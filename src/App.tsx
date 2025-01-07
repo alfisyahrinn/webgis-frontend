@@ -1,7 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup, FeatureGroup } from 'react-leaflet'
 import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw.css";
-import "./index.css"
 import osm from "./provider.ts"
 import { useEffect, useState } from 'react';
 import { EditControl } from 'react-leaflet-draw';
@@ -25,7 +24,8 @@ function App() {
   };
 
   return (
-    <MapContainer className="map" center={position} zoom={8}>
+    <div>
+      <MapContainer className="w-[100%] h-[100vh]" center={position} zoom={8}>
       <FeatureGroup>
         <EditControl position="topright" draw={{
           rectangle: true,
@@ -51,6 +51,7 @@ function App() {
         })
       )}
     </MapContainer>
+    </div>
   )
 }
 
