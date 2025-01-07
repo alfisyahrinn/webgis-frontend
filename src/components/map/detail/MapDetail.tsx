@@ -8,7 +8,6 @@ type MapDetail = {
 
 export default function MapDetail({ props }: { props: MapDetail }) {
 
-    const position: [number, number] = [5.079256, 95.315144]
     console.log({
         y: props.coordinate_y,
         x: props.coordinate_x

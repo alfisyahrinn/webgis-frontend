@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 import MapDetail from "./map/detail/MapDetail"
-import Map from "./map/Map"
 
 type Card = {
     gid: number

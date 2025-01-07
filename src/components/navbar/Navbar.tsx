@@ -3,9 +3,8 @@ import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "f
 export default function Navigation() {
   return (
     <Navbar className="border-b-2">
-      <NavbarBrand as={Link} href="https://flowbite-react.com">
-
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Team OKOK</span>
+      <NavbarBrand>
+        <Link to={'/'} className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Team WINWIN🔥</Link>
       </NavbarBrand>
       <NavbarToggle />
       <NavbarCollapse>
