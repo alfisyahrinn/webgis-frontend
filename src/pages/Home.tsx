@@ -12,7 +12,7 @@ export default function Home() {
           <p className="mt-5 text-base text-black sm:text-xl">
             Jelajahi kekayaan sejarah dan budaya Aceh melalui situs-situs bersejarah, bangunan adat, dan karya seni yang mencerminkan warisan leluhur. Mari bersama menjaga cagar budaya untuk generasi mendatang.
           </p>
-          <Link to="/21" title="" className="inline-flex items-center px-6 py-4 pt-4 font-semibold text-black transition-all duration-200 bg-green-400 rounded-lg sm:mt-10 hover:bg-green-700 focus:bg-green-800" role="button">
+          <Link to="/cagar" title="" className="inline-flex items-center px-6 py-4 pt-4 font-semibold text-black transition-all duration-200 bg-green-400 rounded-lg sm:mt-10 hover:bg-green-700 focus:bg-green-800" role="button">
             Cari Situs Budaya
             <svg className="w-6 h-6 ml-8 -mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -76,7 +76,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex justify-center pt-10 ">
-          <div className="border-2 h-[28rem] w-10/12 rounded-md p-3 shadow-xl">
+          <div className="border-2 h-[28rem] w-10/12 rounded-md p-3 shadow-xl border-solid border-gray-300">
             <Map edit={false} />
           </div>
         </div>
