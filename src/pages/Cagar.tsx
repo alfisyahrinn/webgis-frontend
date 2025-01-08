@@ -24,6 +24,7 @@ export default function Cagar() {
         {datas && (
           datas.map((data: Feature, index: any) => (
             <Card key={index} props={{
+              status: data.properties.status,
               gid: data.properties.gid,
               name: data.properties.name,
               kecamatan: data.properties.district,

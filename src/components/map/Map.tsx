@@ -4,9 +4,7 @@ import { EditControl } from "react-leaflet-draw";
 import osm from "./provider.ts";
 import { Link } from "react-router-dom";
 import ReactDOM from "react-dom";
-import L from 'leaflet';
-import markerIcon from "../../assets/marker.svg"
-import markerIconWarning from "../../assets/marker-warning.svg"
+import { marker1, marker2 } from "../marker/Marker.ts";
 
 export default function Map({ edit }: { edit: boolean }) {
   const position: [number, number] = [4.6232034, 96.8534587];
@@ -63,18 +61,6 @@ export default function Map({ edit }: { edit: boolean }) {
       });
   };
 
-  const marker1 = new L.Icon({
-    iconUrl: markerIconWarning,
-    iconRetinaUrl: markerIconWarning,
-    popupAnchor: [-0, -0],
-    iconSize: [32, 45],
-  });
-  const marker2 = new L.Icon({
-    iconUrl: markerIcon,
-    iconRetinaUrl: markerIcon,
-    popupAnchor: [-0, -0],
-    iconSize: [32, 45],
-  });
 
 
   const handleCreated = (e: any) => {
@@ -204,7 +190,7 @@ export default function Map({ edit }: { edit: boolean }) {
                 <p>Id : {data.properties.gid}</p>
                 <p>Nama : {data.properties.name}</p>
                 <p>Pendidikan : {data.properties.provinsi}</p>
-                <Link to={`/${data.properties.gid}`}>Detail</Link>
+                <Link to={`/cagar/${data.properties.gid}`}>Detail</Link>
               </Popup>
             </Marker>
           );

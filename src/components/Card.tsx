@@ -8,6 +8,7 @@ type Card = {
     deskripsi: string,
     coordinate_y: number,
     coordinate_x: number
+    status: 1 | 0
 }
 
 export default function Card({ props }: { props: Card }) {
@@ -19,7 +20,8 @@ export default function Card({ props }: { props: Card }) {
                 <div className="w-full h-40 bg-zinc-600">
                     <MapDetail props={{
                         coordinate_y: props.coordinate_y,
-                        coordinate_x: props.coordinate_x
+                        coordinate_x: props.coordinate_x,
+                        status: props.status
                     }} />
                 </div>
             </Link>

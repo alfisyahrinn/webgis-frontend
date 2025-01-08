@@ -4,6 +4,8 @@ import About from "./pages/About"
 import Navigation from "./components/navbar/Navbar"
 import Cagar from "./pages/Cagar"
 import Request from "./pages/Request"
+import DetailCagar from "./pages/DetailCagar"
+import Admin from "./pages/Admin"
 
 
 
@@ -15,8 +17,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cagar" element={<Cagar />} />
-        <Route path="/cagar/:id" element={<About />} />
+        <Route path="/cagar/:id" element={<DetailCagar />} />
         <Route path="/request" element={<Request />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   )
