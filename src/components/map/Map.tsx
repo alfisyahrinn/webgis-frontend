@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, FeatureGroup } from 'react-leaf
 import { EditControl } from 'react-leaflet-draw';
 import osm from './provider.ts'
 import { Link } from "react-router-dom";
+import ReactDOM from 'react-dom';
 
 export default function Map({ edit }: { edit: boolean }) {
   const position: [number, number] = [4.6232034, 96.8534587]
@@ -18,10 +19,53 @@ export default function Map({ edit }: { edit: boolean }) {
   }, [])
   const handleCreated = (e: any) => {
     const { layer } = e;
+    const latlng = layer.getLatLng(); // Mendapatkan koordinat marker yang baru dibuat
     console.log('Created layer:', layer);
+    console.log("Latitude:", latlng.lat, "Longitude:", latlng.lng);
+
+    // JSX untuk form input yang ingin ditampilkan di popup
+    const popupContent = (
+      <div className="w-80 h-full">
+        <form>
+          <div className="grid gap-2 mb-2 md:grid-cols-2">
+            <div>
+              <label className="block text-sm font-medium text-gray-900 dark:text-white">Nama Situs</label>
+              <input type="text" id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nama Situs" required />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-900 dark:text-white">Kabupaten</label>
+              <input type="text" id="last_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Kabupaten" required />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-900 dark:text-white">Kategori</label>
+              <input type="text" id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Kategori" required />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-900 dark:text-white">Provinsi</label>
+              <input disabled type="text" id="last_name" className="bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 border-green-500" value={"Aceh"} required />
+            </div>
+          </div>
+          <div className="mb-2">
+            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi</label>
+            <textarea id="message" rows={1} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="deskripsinya..."></textarea>
+          </div>
+          <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+        </form>
+      </div>
+    );
+
+    // Membuat elemen DOM baru untuk popup
+    const popupContainer = document.createElement('div');
+
+    // Menggunakan ReactDOM.createPortal untuk merender JSX ke dalam popup
+    ReactDOM.render(popupContent, popupContainer);
+
+    // Mengikat popup dengan konten yang telah dirender dan membuka popup
+    layer.bindPopup(popupContainer).openPopup();
   };
   return (
     <MapContainer scrollWheelZoom={false} className="w-full h-full rounded-sm" center={position} zoom={8}>
+
       {edit && (
         <FeatureGroup>
           <EditControl position="topright" draw={{
