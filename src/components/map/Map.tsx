@@ -5,13 +5,14 @@ import osm from "./provider.ts";
 import { Link } from "react-router-dom";
 import ReactDOM from "react-dom";
 import { marker1, marker2 } from "../marker/Marker.ts";
+import { URL_API } from "../../types/connect.ts";
 
 export default function Map({ edit }: { edit: boolean }) {
   const position: [number, number] = [4.6232034, 96.8534587];
   const [datas, setDatas] = useState<any>(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/cagar")
+    fetch(`${URL_API}/cagar`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -43,7 +44,7 @@ export default function Map({ edit }: { edit: boolean }) {
       "longitude": latlng.lng,
       "latitude": latlng.lat,
     };
-    fetch("http://localhost:3000/api/cagar", {
+    fetch(`${URL_API}/cagar`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

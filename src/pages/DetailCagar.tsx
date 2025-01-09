@@ -3,6 +3,7 @@ import MapDetail from "../components/map/detail/MapDetail";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Button, Modal, Select } from "flowbite-react";
+import { URL_API } from "../types/connect";
 
 export default function DetailCagar() {
     let { id } = useParams();
@@ -11,7 +12,7 @@ export default function DetailCagar() {
     const isLoggedIn = localStorage.getItem("isLoggedIn")
     const [data, setData] = useState<Feature>()
     useEffect(() => {
-        fetch(`http://localhost:3000/api/cagar/${id}`)
+        fetch(`${URL_API}/cagar/${id}`)
             .then(res => res.json())
             .then((data) => {
                 console.log("data: ", data)
@@ -45,8 +46,8 @@ export default function DetailCagar() {
 
         try {
             // Kirim payload ke backend
-            const response = await fetch(`http://localhost:3000/api/cagar/${id}`, {
-                method: "PUT", // Gunakan metode PUT untuk update data
+            const response = await fetch(`${URL_API}/cagar/${id}`, {
+                method: "PUT", 
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -71,7 +72,7 @@ export default function DetailCagar() {
         const confirmDelete = window.confirm("Are you sure you want to delete this item?");
         if (confirmDelete) {
             try {
-                const response = await fetch(`http://localhost:3000/api/cagar/${id}`, {
+                const response = await fetch(`${URL_API}/cagar/${id}`, {
                     method: 'DELETE',
                 });
 

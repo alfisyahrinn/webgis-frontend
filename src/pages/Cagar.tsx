@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import Card from "../components/Card";
+import { URL_API } from "../types/connect";
 
 export default function Cagar() {
 
   const [datas, setDatas] = useState<any>(null)
   useEffect(() => {
-    fetch("http://localhost:3000/api/cagar")
+    fetch(`${URL_API}/cagar`)
       .then(res => res.json())
       .then((data) => {
         console.log(data.features)
