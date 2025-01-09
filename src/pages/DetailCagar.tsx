@@ -24,6 +24,7 @@ export default function DetailCagar() {
 
 
     const handleSubmit = async (e: any) => {
+        e.preventDefault()
         const form = e.target;
         const namaSitus = form.elements.namedItem("nama_situs").value;
         const kabupaten = form.elements.namedItem("kabupaten").value;
@@ -54,10 +55,8 @@ export default function DetailCagar() {
             });
 
             if (response.ok) {
-                const data = await response.json();
-                console.log("Data berhasil diupdate:", data);
-
-                navigate(`/cagar/${id}`);
+                alert("Data berhasil diupdate:");
+                window.location.reload();
             } else {
                 console.error("Gagal mengupdate data:", response.statusText);
             }

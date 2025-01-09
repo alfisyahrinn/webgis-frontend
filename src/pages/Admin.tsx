@@ -27,6 +27,7 @@ export default function Admin() {
 
             if (response.ok) {
                 alert("status berhasil diupdate:",);
+                window.location.reload();
             } else {
                 alert("Gagal mengupdate status");
             }

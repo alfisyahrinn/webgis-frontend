@@ -41,8 +41,8 @@ export default function Map({ edit }: { edit: boolean }) {
       "province": `${provinsi}`,
       "objectid": 1,
       "provinsi": "Aceh",
-      "longitude": latlng.lng,
-      "latitude": latlng.lat,
+      "shape_leng": latlng.lng,
+      "shape_area": latlng.lat,
     };
     fetch(`${URL_API}/cagar`, {
       method: "POST",
@@ -53,8 +53,8 @@ export default function Map({ edit }: { edit: boolean }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("Data berhasil disimpan:", data);
         alert("Data berhasil disimpan!");
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error saat menyimpan data:", error);
