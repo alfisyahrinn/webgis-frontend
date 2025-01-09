@@ -8,7 +8,7 @@ export default function DetailCagar() {
     let { id } = useParams();
     const [openModal, setOpenModal] = useState(false);
     const [modalPlacement, setModalPlacement] = useState('center')
-
+    const isLoggedIn = localStorage.getItem("isLoggedIn")
     const [data, setData] = useState<Feature>()
     useEffect(() => {
         fetch(`http://localhost:3000/api/cagar/${id}`)
@@ -30,7 +30,7 @@ export default function DetailCagar() {
         const kategori = form.elements.namedItem("kategori").value;
         const deskripsi = form.elements.namedItem("deskripsi").value;
         const provinsi = form.elements.namedItem("provinsi").value;
-    
+
         // Buat payload untuk dikirim
         const payload = {
             nm_objekcb: namaSitus,
@@ -40,9 +40,9 @@ export default function DetailCagar() {
             district: kabupaten,
             province: provinsi,
         };
-    
+
         console.log("payload", payload);
-    
+
         try {
             // Kirim payload ke backend
             const response = await fetch(`http://localhost:3000/api/cagar/${id}`, {
@@ -52,11 +52,11 @@ export default function DetailCagar() {
                 },
                 body: JSON.stringify(payload),
             });
-    
+
             if (response.ok) {
                 const data = await response.json();
                 console.log("Data berhasil diupdate:", data);
-    
+
                 navigate(`/cagar/${id}`);
             } else {
                 console.error("Gagal mengupdate data:", response.statusText);
@@ -65,7 +65,7 @@ export default function DetailCagar() {
             console.error("Error saat mengupdate data:", error);
         }
     };
-    
+
 
     const handleDelete = async (id: number) => {
         const confirmDelete = window.confirm("Are you sure you want to delete this item?");
@@ -210,20 +210,23 @@ export default function DetailCagar() {
                                 </Modal.Footer>
                             </form>
                         </Modal>
-                        <button
-                            type="button"
-                            className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
-                            onClick={() => setOpenModal(true)}
-                        >
-                            Edit
-                        </button>
-                        <button
-                            type="button"
-                            className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
-                            onClick={() => handleDelete(Number(id))}
-                        >
-                            Delete
-                        </button>
+                        {isLoggedIn && (<>
+                            <button
+                                type="button"
+                                className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
+                                onClick={() => setOpenModal(true)}
+                            >
+                                Edit
+                            </button>
+                            <button
+                                type="button"
+                                className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
+                                onClick={() => handleDelete(Number(id))}
+                            >
+                                Delete
+                            </button>
+                        </>)}
+
                     </div>
                 </div>
             </div>
