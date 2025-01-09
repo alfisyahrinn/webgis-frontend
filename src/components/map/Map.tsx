@@ -5,16 +5,17 @@ import osm from "./provider.ts";
 import { Link } from "react-router-dom";
 import ReactDOM from "react-dom";
 import { marker1, marker2 } from "../marker/Marker.ts";
+import { URL_API } from "../../types/connect.ts";
 
 export default function Map({ edit }: { edit: boolean }) {
   const position: [number, number] = [4.6232034, 96.8534587];
   const [datas, setDatas] = useState<any>(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/cagar")
+    fetch(`${URL_API}/cagar`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log('data', data);
         setDatas(data);
       })
       .catch((error) => console.error("Error fetching GeoJSON data:", error));
@@ -43,7 +44,7 @@ export default function Map({ edit }: { edit: boolean }) {
       "longitude": latlng.lng,
       "latitude": latlng.lat,
     };
-    fetch("http://localhost:3000/api/cagar", {
+    fetch(`${URL_API}/cagar`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -181,8 +182,8 @@ export default function Map({ edit }: { edit: boolean }) {
       {datas &&
         datas.features.map((data: Feature, index: any) => {
           const lat: [number, number] = [
-            data.geometry.coordinates[0][1],
-            data.geometry.coordinates[0][0],
+            data.properties.shape_area,
+            data.properties.shape_leng,
           ];
           return (
             <Marker position={lat} key={index} icon={(data.properties.status == 0) ? marker1 : marker2}>

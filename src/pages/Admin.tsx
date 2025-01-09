@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { URL_API } from "../types/connect";
 
 export default function Admin() {
     const [datas, setDatas] = useState<any>(null);
     useEffect(() => {
-        fetch("http://localhost:3000/api/cagar")
+        fetch(`${URL_API}/cagar`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
@@ -15,7 +16,7 @@ export default function Admin() {
     const handleStatus = async (props: { status: number, id: number }) => {
         console.log(props)
         try {
-            const response = await fetch(`http://localhost:3000/api/cagar/status/${props.id}`, {
+            const response = await fetch(`${URL_API}/cagar/status/${props.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

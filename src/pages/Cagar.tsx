@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import Card from "../components/Card";
+import { URL_API } from "../types/connect";
 
 export default function Cagar() {
 
   const [datas, setDatas] = useState<any>(null)
   useEffect(() => {
-    fetch("http://localhost:3000/api/cagar")
+    fetch(`${URL_API}/cagar`)
       .then(res => res.json())
       .then((data) => {
         console.log(data.features)
@@ -29,8 +30,8 @@ export default function Cagar() {
               name: data.properties.name,
               kecamatan: data.properties.district,
               deskripsi: data.properties.deskripsi,
-              coordinate_y: data.geometry.coordinates[0][0],
-              coordinate_x: data.geometry.coordinates[0][1],
+              coordinate_y: data.properties.shape_leng,
+              coordinate_x: data.properties.shape_area,
             }} />
           ))
         )}
