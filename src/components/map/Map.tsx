@@ -52,7 +52,7 @@ export default function Map({ edit }: { edit: boolean }) {
       body: JSON.stringify(payload),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(() => {
         alert("Data berhasil disimpan!");
         window.location.reload();
       })
