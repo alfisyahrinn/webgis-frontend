@@ -10,7 +10,7 @@ export default function DetailCagar() {
     const [openModal, setOpenModal] = useState(false);
     const [modalPlacement, setModalPlacement] = useState('center')
     const isLoggedIn = localStorage.getItem("isLoggedIn")
-    const [data, setData] = useState<Feature>()
+    const [data, setData] = useState<any>()
     useEffect(() => {
         fetch(`${URL_API}/cagar/${id}`)
             .then(res => res.json())
@@ -47,7 +47,7 @@ export default function DetailCagar() {
         try {
             // Kirim payload ke backend
             const response = await fetch(`${URL_API}/cagar/${id}`, {
-                method: "PUT", 
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -100,8 +100,8 @@ export default function DetailCagar() {
                     </div>
                     <div className="w-full h-96 border-2 rounded-md p-3 shadow-xl border-solid border-gray-300">
                         <MapDetail props={{
-                            coordinate_y: data.geometry.coordinates[0][0],
-                            coordinate_x: data.geometry.coordinates[0][1],
+                            coordinate_y: data.properties.shape_leng,
+                            coordinate_x: data.properties.shape_area,
                             status: data.properties.status
                         }} />
                     </div>

@@ -30,8 +30,8 @@ export default function Cagar() {
               name: data.properties.name,
               kecamatan: data.properties.district,
               deskripsi: data.properties.deskripsi,
-              coordinate_y: data.geometry.coordinates[0][0],
-              coordinate_x: data.geometry.coordinates[0][1],
+              coordinate_y: data.properties.shape_leng,
+              coordinate_x: data.properties.shape_area,
             }} />
           ))
         )}

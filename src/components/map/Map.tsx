@@ -15,7 +15,7 @@ export default function Map({ edit }: { edit: boolean }) {
     fetch(`${URL_API}/cagar`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log('data', data);
         setDatas(data);
       })
       .catch((error) => console.error("Error fetching GeoJSON data:", error));
@@ -182,8 +182,8 @@ export default function Map({ edit }: { edit: boolean }) {
       {datas &&
         datas.features.map((data: Feature, index: any) => {
           const lat: [number, number] = [
-            data.geometry.coordinates[0][1],
-            data.geometry.coordinates[0][0],
+            data.properties.shape_area,
+            data.properties.shape_leng,
           ];
           return (
             <Marker position={lat} key={index} icon={(data.properties.status == 0) ? marker1 : marker2}>

@@ -8,9 +8,7 @@ interface Feature {
     district: string;
     provinsi: string;
     status: 1 | 0;
-  };
-  geometry: {
-    type: "MultiPoint";
-    coordinates: [number, number][]; // Array of coordinate pairs
+    shape_leng: number,
+    shape_area: number
   };
 };
