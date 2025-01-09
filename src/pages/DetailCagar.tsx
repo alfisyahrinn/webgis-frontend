@@ -2,13 +2,12 @@ import { Link, useParams } from "react-router";
 import MapDetail from "../components/map/detail/MapDetail";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { Button, Modal, Select } from "flowbite-react";
+import { Button, Modal } from "flowbite-react";
 import { URL_API } from "../types/connect";
 
 export default function DetailCagar() {
     let { id } = useParams();
     const [openModal, setOpenModal] = useState(false);
-    const [modalPlacement, setModalPlacement] = useState('center')
     const isLoggedIn = localStorage.getItem("isLoggedIn")
     const [data, setData] = useState<any>()
     useEffect(() => {
@@ -127,7 +126,7 @@ export default function DetailCagar() {
                     <div className="mt-2">
                         <Modal
                             show={openModal}
-                            position={modalPlacement}
+                            position={"center"}
                             onClose={() => setOpenModal(false)}
                         >
                             <form onSubmit={(e) => handleSubmit(e)}>
